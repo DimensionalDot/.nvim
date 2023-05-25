@@ -25,10 +25,6 @@ vim.keymap.set("v", "<A-K>", ":co '><CR>gv=gv", {silent=true})
 -- netrw
 vim.keymap.set("n", "<leader>dw", "<cmd>Ex<CR>")
 
--- Telescope
-vim.keymap.set("n", "<leader>tf", "<cmd>Telescope find_files<CR>")
-vim.keymap.set("n", "<leader>tg", "<cmd>Telescope live_grep<CR>")
-
 -- Undo tree
 vim.keymap.set("n", "<leader>ut", ":UndotreeToggle<CR>")
 
