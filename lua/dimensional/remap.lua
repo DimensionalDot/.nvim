@@ -6,8 +6,8 @@ vim.keymap.set({"n", "i", "v"}, "<right>", "<nop>")
 vim.keymap.set({"n", "i", "v"}, "<up>", "<nop>")
 vim.keymap.set({"n", "i", "v"}, "<down>", "<nop>")
 
-vim.keymap.set("n", "<C-k>", "<C-u>zz")
-vim.keymap.set("n", "<C-j>", "<C-d>zz")
+-- vim.keymap.set("n", "<C-k>", "<C-u>zz")
+-- vim.keymap.set("n", "<C-j>", "<C-d>zz")
 
 -- line movement (and copying)
 vim.keymap.set("n", "<A-j>", "<cmd>m .+1<CR>==", {silent=true})

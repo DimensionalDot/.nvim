@@ -2,10 +2,15 @@ local ls = require("luasnip")
 
 ls.config.setup {
     -- remembers last used snippet so you can jump back into it
-    history = true,
+    -- disabling for now until muscle memory adjusts to c-j/k for nvim-cmp menu
+    history = false,
 
     updateevents="TextChanged,TextChangedI"
 }
+
+-- unsetting these so they can be used for snippet jumping below
+vim.keymap.set({'n', 'i'}, '<C-n>', '<Nop>');
+vim.keymap.set({'n', 'i'}, '<C-p>', '<Nop>');
 
 vim.keymap.set({"i", "s"}, "<C-n>", function()
     if ls.expand_or_jumpable() then
