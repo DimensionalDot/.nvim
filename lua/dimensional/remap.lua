@@ -28,4 +28,18 @@ vim.keymap.set("n", "<leader>dw", "<cmd>Ex<CR>")
 -- Undo tree
 vim.keymap.set("n", "<leader>ut", ":UndotreeToggle<CR>")
 
+-- clipboard usage
+vim.keymap.set({"n", "v"}, "<leader>y", "\"+y")
+vim.keymap.set("n", "<leader>Y", [["+Y]])
+
+vim.keymap.set({"n", "v"}, "<leader>d", [["+d]])
+vim.keymap.set("n", "<leader>D", [["+D]])
+-- note that in v mode these two still overwrite the unnamed reg ("") not "+
+vim.keymap.set({"n", "v"}, "<leader>p", [["+p]])
+vim.keymap.set({"n", "v"}, "<leader>P", [["+P]])
+
+-- don't overwrite unnamed register ("")
+vim.keymap.set({"n", "v"}, "<leader><leader>d", [["_d]])
+vim.keymap.set("n", "<leader><leader>D", [["_D]])
+
 -- vim.keymap.set("v", "<Space>", "<Nop>", { noremap = true, silent = true })
