@@ -38,7 +38,7 @@ require'lspconfig'.jdtls.setup{
     capabilities = capabilities,
     on_attach = on_attach
 }
-require'lspconfig'.emmet_ls.setup{
+require'lspconfig'.emmet_language_server.setup{
     capabilities = capabilities,
     on_attach = on_attach
 }
@@ -52,6 +52,10 @@ require'lspconfig'.rust_analyzer.setup{
     cmd = {"rustup", "run", "stable", "rust-analyzer"};
 } 
 require'lspconfig'.hls.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+};
+require'lspconfig'.html.setup{
     capabilities = capabilities,
     on_attach = on_attach,
 };
