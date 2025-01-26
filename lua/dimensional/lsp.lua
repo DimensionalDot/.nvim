@@ -18,7 +18,7 @@ require'lspconfig'.pylsp.setup {
     capabilities = capabilities,
     on_attach = on_attach
 }
-require'lspconfig'.tsserver.setup {
+require'lspconfig'.ts_ls.setup {
     capabilities = capabilities,
     on_attach = on_attach
 }
@@ -49,13 +49,30 @@ require'lspconfig'.solargraph.setup{
 require'lspconfig'.rust_analyzer.setup{
     capabilities = capabilities,
     on_attach = on_attach,
-    cmd = {"rustup", "run", "stable", "rust-analyzer"};
+    cmd = {"rustup", "run", "stable", "rust-analyzer"},
 } 
 require'lspconfig'.hls.setup{
     capabilities = capabilities,
     on_attach = on_attach,
 };
+require'lspconfig'.sourcekit.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+    filetypes = { "swift" },
+};
 require'lspconfig'.html.setup{
     capabilities = capabilities,
     on_attach = on_attach,
 };
+require'lspconfig'.lua_ls.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
+require'lspconfig'.gopls.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
+require'lspconfig'.svelte.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
