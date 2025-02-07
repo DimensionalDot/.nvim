@@ -1,81 +1,46 @@
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local lspconfig = require("lspconfig")
 
-on_attach = function()
-    vim.keymap.set("n", "<leader>le", vim.diagnostic.open_float, {buffer=0})
-    vim.keymap.set("n", "<leader>ln", vim.diagnostic.goto_next, {buffer=0})
-    vim.keymap.set("n", "<leader>lp", vim.diagnostic.goto_prev, {buffer=0})
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
-    vim.keymap.set("n", "<leader>ld", vim.lsp.buf.definition, {buffer=0})
-    vim.keymap.set("n", "<leader>li", vim.lsp.buf.implementation, {buffer=0})
-    vim.keymap.set("n", "<leader>lt", vim.lsp.buf.type_definition, {buffer=0})
-    vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, {buffer=0})
+local lspconfig_defaults = lspconfig.util.default_config
+lspconfig_defaults.capabilities = vim.tbl_deep_extend(
+    "force",
+    lspconfig_defaults.capabilities,
+    require("cmp_nvim_lsp").default_capabilities()
+)
 
-    vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, {buffer=0})
-    vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, {buffer=0})
-end
+vim.api.nvim_create_autocmd("LspAttach", {
+    desc = "LSP Actions",
+    group = vim.api.nvim_create_augroup("LSPActions", {}),
+    callback = function(event)
+        local opts = { buffer = event.buf }
 
-require'lspconfig'.pylsp.setup {
-    capabilities = capabilities,
-    on_attach = on_attach
-}
-require'lspconfig'.ts_ls.setup {
-    capabilities = capabilities,
-    on_attach = on_attach
-}
-require'lspconfig'.clangd.setup {
-    capabilities = capabilities,
-    on_attach = on_attach
-}
-require'lspconfig'.cssls.setup {
-    capabilities = capabilities,
-    on_attach = on_attach
-}
-require'lspconfig'.ocamllsp.setup {
-    capabilities = capabilities,
-    on_attach = on_attach
-}
-require'lspconfig'.jdtls.setup{
-    capabilities = capabilities,
-    on_attach = on_attach
-}
-require'lspconfig'.emmet_language_server.setup{
-    capabilities = capabilities,
-    on_attach = on_attach
-}
-require'lspconfig'.solargraph.setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
-}
-require'lspconfig'.rust_analyzer.setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
-    cmd = {"rustup", "run", "stable", "rust-analyzer"},
-    -- init_options = {
-    --     userLanguages = { rust = "html" }, -- is this working?
-    -- },
-}
-require'lspconfig'.hls.setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
-};
-require'lspconfig'.sourcekit.setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+        vim.keymap.set("n", "<leader>le", vim.diagnostic.open_float, opts)
+        vim.keymap.set("n", "<leader>ln", vim.diagnostic.goto_next, opts)
+        vim.keymap.set("n", "<leader>lp", vim.diagnostic.goto_prev, opts)
+        vim.keymap.set("n", "<leader>ld", vim.lsp.buf.definition, opts)
+        vim.keymap.set("n", "<leader>li", vim.lsp.buf.implementation, opts)
+        vim.keymap.set("n", "<leader>lt", vim.lsp.buf.type_definition, opts)
+        vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, opts)
+
+        vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, opts)
+        vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)
+    end,
+})
+
+lspconfig.pylsp.setup {}
+lspconfig.ts_ls.setup {}
+lspconfig.clangd.setup {}
+lspconfig.cssls.setup {}
+lspconfig.ocamllsp.setup {}
+lspconfig.jdtls.setup {}
+lspconfig.emmet_language_server.setup {}
+lspconfig.solargraph.setup {}
+lspconfig.rust_analyzer.setup {}
+lspconfig.hls.setup {}
+lspconfig.sourcekit.setup {
     filetypes = { "swift" },
-};
-require'lspconfig'.html.setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
-};
-require'lspconfig'.lua_ls.setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
 }
-require'lspconfig'.gopls.setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
-}
-require'lspconfig'.svelte.setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
-}
+lspconfig.html.setup {}
+lspconfig.lua_ls.setup {}
+lspconfig.gopls.setup {}
+lspconfig.svelte.setup {}
