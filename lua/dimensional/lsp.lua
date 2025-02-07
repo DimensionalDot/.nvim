@@ -50,7 +50,10 @@ require'lspconfig'.rust_analyzer.setup{
     capabilities = capabilities,
     on_attach = on_attach,
     cmd = {"rustup", "run", "stable", "rust-analyzer"},
-} 
+    -- init_options = {
+    --     userLanguages = { rust = "html" }, -- is this working?
+    -- },
+}
 require'lspconfig'.hls.setup{
     capabilities = capabilities,
     on_attach = on_attach,

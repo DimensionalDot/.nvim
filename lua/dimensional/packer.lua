@@ -31,8 +31,9 @@ return require('packer').startup(function(use)
     use {
         'nvim-treesitter/nvim-treesitter',
         'nvim-treesitter/nvim-treesitter-context',
+        'nvim-treesitter/playground',
         run = ':TSUpdate'
-    } 
+    }
     use 'neovim/nvim-lspconfig'
     use 'onsails/lspkind.nvim'
 
